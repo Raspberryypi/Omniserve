@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const connectDB = require('./config/db');
+constauthRoutes = require('./routes/authRoutes');
+const assetRoutes = require('./routes/assetRoutes');
 
 const app = express();
 
@@ -11,6 +13,10 @@ connectDB();
 //Middleware
 app.use(cors());
 app.use(express.json());
+
+// API Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/assets', assetRoutes);
 
 //Test Route
 app.get('/', (req, res) => {
